@@ -1,0 +1,26 @@
+{
+  "name": "cursoprofesionaljavascript",
+  "version": "1.0.0",
+  "description": "Curso profesional de JavasCript",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafael-LH/CursoProfesionalJavaScript.git"
+  },
+  "keywords": [
+    "Webpack",
+    "JS"
+  ],
+  "author": "Rafael Lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rafael-LH/CursoProfesionalJavaScript/issues"
+  },
+  "homepage": "https://github.com/Rafael-LH/CursoProfesionalJavaScript#readme"
+}

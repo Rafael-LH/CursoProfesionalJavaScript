@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PlatziMediaPlayer.js</title>
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="./assets/index.css" />
+</head>
+<body>
+    <header>
+        <h1>PlatziMediaPlayer.js</h1>
+        <p>An extensible media player.</p>
+      </header>
+  
+      <main class="container">
+        <video class="movie">
+          <source src="./assets/f8.mp4" />
+        </video>
+  
+        <button>Play/Pause</button>
+      </main>
+
+      <script>
+
+                const video = document.querySelector("video"); 
+                const button = document.querySelector("button");
+                // Documentacion de HTML media Element -> https://developer.mozilla.org/es/docs/Web/API/HTMLMediaElement  
+                // Paused https://developer.mozilla.org/es/docs/Web/API/HTMLMediaElement/paused  
+
+                // clase MediaPlayer    
+                function MediaPlayer(config){
+                    this.media = config.el
+                }
+
+                // creacion del metodo play (Los metodos que se crean de un clase siempre se agregan a un prototype)
+                MediaPlayer.prototype.play = function(){
+                         
+                        // si este video esta pausado entonces ponlo en play, si no entonces ponlo en pausa
+                        this.media.paused ? this.media.play() : this.media.pause() 
+                } 
+                MediaPlayer.prototype.stop = () => video.pause()
+
+                const player = new MediaPlayer({ el: video });    
+                                    //    play es un evento que ya biene con tag html de video     
+                button.onclick = () => player.play();
+
+      </script>
+</body>
+</html>
+
