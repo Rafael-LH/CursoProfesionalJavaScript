@@ -22,34 +22,11 @@
           <source src="./assets/f8.mp4" />
         </video>
   
-        <button>Play/Pause</button>
+        <button id="btn-playPause">Play/Pause</button>
+        <button id="btn-toggleMute">Unmute</button>
       </main>
 
-      <script>
-
-                const video = document.querySelector("video"); 
-                const button = document.querySelector("button");
-                // Documentacion de HTML media Element -> https://developer.mozilla.org/es/docs/Web/API/HTMLMediaElement  
-                // Paused https://developer.mozilla.org/es/docs/Web/API/HTMLMediaElement/paused  
-
-                // clase MediaPlayer    
-                function MediaPlayer(config){
-                    this.media = config.el
-                }
-
-                // creacion del metodo play (Los metodos que se crean de un clase siempre se agregan a un prototype)
-                MediaPlayer.prototype.play = function(){
-                         
-                        // si este video esta pausado entonces ponlo en play, si no entonces ponlo en pausa
-                        this.media.paused ? this.media.play() : this.media.pause() 
-                } 
-                MediaPlayer.prototype.stop = () => video.pause()
-
-                const player = new MediaPlayer({ el: video });    
-                                    //    play es un evento que ya biene con tag html de video     
-                button.onclick = () => player.play();
-
-      </script>
+      <script src="./dist/bundle.js"></script>
 </body>
 </html>
 

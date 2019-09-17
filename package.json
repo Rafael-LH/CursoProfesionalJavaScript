@@ -4,10 +4,28 @@
   "description": "Curso profesional de JavasCript",
   "main": "index.js",
   "scripts": {
-    "start": "live-server"
+    "start:wp": "npm-run-all --parallel start wp",
+    "start": "live-server",
+    "wp": "webpack -w",
+    "eslint": "eslint . --fix"
   },
   "devDependencies": {
-    "live-server": "^1.2.1"
+    "@babel/cli": "7.6.0",
+    "@babel/core": "7.6.0",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-transform-runtime": "7.6.0",
+    "@babel/preset-env": "7.6.0",
+    "babel-loader": "8.0.6",
+    "eslint": "6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "live-server": "1.2.1",
+    "npm-run-all": "4.1.5",
+    "webpack": "4.40.2",
+    "webpack-cli": "3.3.8"
   },
   "repository": {
     "type": "git",
