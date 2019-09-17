@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This</title>
+</head>
+<body>
+        <h1>
+            <code>this</code> se refiere a un objeto. Ese objeto es el que actualmente esta 
+            ejecutando un pedazo de código.
+        </h1>
+        <script>
+                
+                // this en el scope global
+                console.log('this global scope',this)
+
+                // this en el scope de una funcion
+                function whoIsThis(){
+                    console.log('this function scope', this)
+                }
+                // ambos hacen referencia al objeto window 
+                
+                let person = {
+                    // todo lo que esta aqui a dentro (dentro de mi objeto) es un pedazo de codigo el cual 
+                    // hace referencia this o el cual puede apuntar this
+                    name: 'Juan',
+                    saludar: function(){
+                        console.log(`Hola soy ${this.name}`)
+                    }
+                }
+                person.saludar()
+                const accion = person.saludar
+                //solo nos imprimira Hola soy, porque this.name queda fuera del contexto de persona
+                // y por eso solo imprime Hola soy porque lo estamos llamando desde afuera del contexto
+                console.log(accion() ) 
+
+                function Person(name){ //esto es como un constructor
+                    // el this en las funciones comienza como un valor nulo es decir this = []
+                    this.name = name
+                }
+
+                Person.prototype.saludar = function(){
+                        console.log(`Me llamo ${this.name}`)
+                }
+
+                let newPerson = new Person('Rafael')
+                newPerson.saludar();
+        </script>
+</body>
+</html>

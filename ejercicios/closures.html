@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Closures</title>
+</head>
+<body>
+
+         <script>
+                // Un closure es la combinacion de un scope de una funcion y una funcion donde fue definida
+                // como en este caso color esta dentro del scope de una funcion
+                // y esta misma variable entra a otra funcion y ahi estamos combinando el scope con las funciones y eso es un closure
+
+                // en si es una funcion la cual tiene un scope y dentro de esa funcion hay otra funcion la cual fue definida en el
+                // scope de la primer funcion
+
+                (function(){ //scope
+                    let color = "red"
+                    function printColor(){ //funcion definia
+                        console.log(color)
+                    }
+                    printColor()
+                        
+                }())
+
+                function makeColorPrinter(color){ //scope
+                    let colorMessage = `The color is ${color}`
+                    return function(){ //funcion definida dentro del scope de una funcion
+                        console.log(colorMessage)
+                    }
+                
+                }
+
+                let colorGreen = makeColorPrinter("green")
+                console.log(colorGreen() );
+
+                //Sin closure
+                const counter = {
+                    count: 3,
+                }
+                console.log(counter.count);
+
+                //con closure 
+                // la diferencia es que sin closure puedo acceder a count y con closure no puedo acceder a count
+                function makeCounter(n){
+                    let count = n; //variable privada
+
+                    return{
+                        increase: function() {
+                            return count = count + 1
+                        },
+                        decrease: function() {
+                            return count = count - 1
+                        },
+                        getcount: function() {
+                            return count
+                        }
+                    }
+                }
+
+                let counter2 = makeCounter(7);
+                console.log(`Initial value count with closure: ${counter2.getcount()}`);
+                // con counter no puedo acceder a la variable count , por lo tanto es una variable privada 
+                console.log(`Count with closure: ${counter2.count}`); // no puedo acceder a la variable count porque con los closures puedes encapsular las variables
+                console.log(`Count without closure: ${counter.count}`);
+                console.log(`Count with closure Increase: ${counter2.increase()}`);
+                console.log(`Count with closure Increase: ${counter2.increase()}`);
+                console.log(`Count with closure Increase: ${counter2.increase()}`);
+                console.log(`Count with closure Decrease: ${counter2.decrease()}`);
+                console.log(`Count with closure Decrease: ${counter2.decrease()}`);
+                console.log(`Count with closure Get Count: ${counter2.getcount()}`);
+                
+                // Conclusio: con closure los valores que encapsulamos no podemos leer ó modificar directamente. 
+                //            se tiene que hacer con unas functiones, eso es closures
+       </script>
+</body>
+</html>
