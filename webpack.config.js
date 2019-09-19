@@ -4,10 +4,11 @@ module.exports = {
   mode: 'development',
   entry: {
     index: path.resolve(__dirname, './assets/index.js'),
+    callAppyBind: path.resolve(__dirname, './ejercicios/call-apply-bind.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
 
   module:{
