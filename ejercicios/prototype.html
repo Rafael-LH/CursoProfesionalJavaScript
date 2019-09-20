@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- En Javascript todo son objetos, no tenemos clases, no tenemos ese plano para crear objetos.
+    Todos los objetos “heredan” de un prototipo que a su vez hereda de otro prototipo y
+    así sucesivamente creando lo que se llama la prototype chain.
+    La keyword new crea un nuevo objeto que “hereda” todas las propiedades del prototype de otro objeto.
+    No confundir prototype con proto que es sólo una propiedad en cada instancía que apunta al prototipo del que hereda.    -->
+
+    <!-- Prototype nos permite crear, extender o sobreescribir el comportamiento de un objeto -->
+    <script>
+            
+            // Objeto comun y corriente
+            const goku = {
+                name: 'Goku'
+            }
+            goku.saludar = function() {
+                console.log(`Hola soy ${this.name}`);
+            }
+            goku.saludar();
+
+            const gohan = {
+                name: 'Gohan'
+            }
+            gohan.saludar = function() {
+                console.log(`Hola soy ${this.name}`);
+            }
+            gohan.saludar();
+
+            // seamos un poco mas eficientes
+            function saiyan(name) {
+                  const saiyan = {
+                      name: name
+                  }  
+
+                //   este codigo es mas eficiente que el de arriba pero, aqui estamos haciendo algo mal y eso esque 
+                //   cada que llamamos la funcion saiyan estamos creando una funcion que es saludar, que es la que tengo abajo
+                //   y eso no es tan eficiente
+                  saiyan.saludar = function(){
+                        console.log(`Hola soy ${this.name}`);
+                  }
+                  return saiyan.saludar()
+            }
+            saiyan('El cocun');
+
+            // Aun podemos mejorar mas y evitar que ese metodo se valla creando cada vez que llamamos a nuestra funcion saiyan
+            const saiyanMethos = {
+                saludar: function() {
+                     console.log(`Hola me llamo ${this.name}`);
+                        
+                }
+            }
+            function saiyan2(name) {
+                const saiyan = {
+                    name: name
+                }
+                saiyan.saludar = saiyanMethos.saludar
+                return saiyan
+            }
+            let gohan2 = saiyan2('Gohan')
+            gohan2.saludar();
+
+            let goku2 = saiyan2('Goku')
+            goku2.saludar();
+
+
+            // Mejoramos nuestro codigo pero... aun hay una mejor manera y esa es con Object.create
+            const saiyanMethos2 = {
+                saludar: function() {
+                     console.log(`Hola, Soy un superheroe llamado ${this.name}`);
+                        
+                }
+            }
+            function saiyan3(name) {
+                const saiyan = Object.create(saiyanMethos2)
+                saiyan.name = name  
+                return saiyan  
+            }   
+            let gohan3 = saiyan3('Gohan')        
+            gohan3.saludar() 
+            let goku3 = saiyan3('Goku')         
+            goku3.saludar();
+
+          function proto(name) {
+            this.name = name;
+          }
+          proto.prototype.saludar = function() {
+               console.log(`Hola que hay ${this.name}`);
+          }
+          let person = new proto('Rafel')
+          console.log(person.saludar() );
+
+    </script>
+</body>
+</html>
