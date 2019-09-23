@@ -7,11 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- En Javascript todo son objetos, no tenemos clases, no tenemos ese plano para crear objetos.
+    <!-- En Javascript todo son objetos, no tenemos clases,
     Todos los objetos “heredan” de un prototipo que a su vez hereda de otro prototipo y
     así sucesivamente creando lo que se llama la prototype chain.
     La keyword new crea un nuevo objeto que “hereda” todas las propiedades del prototype de otro objeto.
-    No confundir prototype con proto que es sólo una propiedad en cada instancía que apunta al prototipo del que hereda.    -->
+    No confundir prototype con proto que es sólo una propiedad en cada instancía que apunta al prototipo del que hereda.
+    Los objetos tienen por defecto un prototipo que hereda de la clase Object y al prototipo se le pueden agregar métodos
+    que son accesibles desde el this. -->
 
     <!-- Prototype nos permite crear, extender o sobreescribir el comportamiento de un objeto -->
     <script>
@@ -34,7 +36,7 @@
             gohan.saludar();
 
             // seamos un poco mas eficientes
-            function saiyan(name) {
+            function saiyan(name) { //constructor
                   const saiyan = {
                       name: name
                   }  
@@ -56,7 +58,7 @@
                         
                 }
             }
-            function saiyan2(name) {
+            function saiyan2(name) { //constructor
                 const saiyan = {
                     name: name
                 }
@@ -77,7 +79,7 @@
                         
                 }
             }
-            function saiyan3(name) {
+            function saiyan3(name) { //constructor
                 const saiyan = Object.create(saiyanMethos2)
                 saiyan.name = name  
                 return saiyan  
@@ -87,14 +89,28 @@
             let goku3 = saiyan3('Goku')         
             goku3.saludar();
 
-          function proto(name) {
+          function proto(name) { //constructor
             this.name = name;
           }
           proto.prototype.saludar = function() {
                console.log(`Hola que hay ${this.name}`);
           }
+        //   new es un atajo azucar sintactico proto.prototype  al objeto y de esta manera evitamos porner Object.create()
           let person = new proto('Rafel')
           console.log(person.saludar() );
+
+
+        // esta es la mejor manera de las anteriores porque utilizamos azucar sintactico con el atajo de new  
+            function saiyan4(name) { //constructor
+                this.name = name  
+            }   
+            saiyan4.prototype.saludar = function() {
+                   console.log(`esto es azucar sintactico utilizando new, y mi nombre es ${this.name}`);
+            }
+            let gohan4 = new saiyan4('Gohan azucar sintactico') //haciendolo de esta manera evitamos poner en nuestro constructor 
+            //saiyan = Object.create(saiyanMethods)      
+            gohan4.saludar();  
+
 
     </script>
 </body>
