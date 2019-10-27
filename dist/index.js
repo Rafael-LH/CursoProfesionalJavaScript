@@ -106,7 +106,19 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar _this2 = undefined;\n\n//
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MediaPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MediaPlayer */ \"./assets/MediaPlayer.js\");\n/* harmony import */ var _plugins_AutoPlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/AutoPlay */ \"./assets/plugins/AutoPlay.js\");\n\n\nvar video = document.querySelector('video');\nvar btnPlayPause = document.querySelector('#btn-playPause');\nvar btntoggleMute = document.querySelector('#btn-toggleMute');\nvar player = new _MediaPlayer__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: video,\n  plugins: [new _plugins_AutoPlay__WEBPACK_IMPORTED_MODULE_1__[\"default\"]()]\n}); // play es un evento que ya biene con tag html de video\n\nbtnPlayPause.onclick = function () {\n  return player.play();\n};\n\nbtntoggleMute.onclick = function (e) {\n  return player.toggleMute(e);\n};\n\n//# sourceURL=webpack:///./assets/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MediaPlayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MediaPlayer */ \"./assets/MediaPlayer.js\");\n/* harmony import */ var _plugins_AutoPlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plugins/AutoPlay */ \"./assets/plugins/AutoPlay.js\");\n/* harmony import */ var _plugins_AutoPause_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/AutoPause.js */ \"./assets/plugins/AutoPause.js\");\n\n\n\nvar video = document.querySelector('video');\nvar btnPlayPause = document.querySelector('#btn-playPause');\nvar btntoggleMute = document.querySelector('#btn-toggleMute');\nvar player = new _MediaPlayer__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: video,\n  plugins: [new _plugins_AutoPlay__WEBPACK_IMPORTED_MODULE_1__[\"default\"](), new _plugins_AutoPause_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]()]\n}); // play es un evento que ya biene con tag html de video\n\nbtnPlayPause.onclick = function () {\n  return player.play();\n};\n\nbtntoggleMute.onclick = function (e) {\n  return player.toggleMute(e);\n};\n\n//# sourceURL=webpack:///./assets/index.js?");
+
+/***/ }),
+
+/***/ "./assets/plugins/AutoPause.js":
+/*!*************************************!*\
+  !*** ./assets/plugins/AutoPause.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\");\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nvar AutoPause =\n/*#__PURE__*/\nfunction () {\n  function AutoPause() {\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AutoPause);\n\n    this.threshold = 0.25;\n    this.handleIntersection = this.handleIntersection.bind(this);\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AutoPause, [{\n    key: \"run\",\n    value: function run(player) {\n      this.player = player;\n      var observer = new IntersectionObserver(this.handleIntersection, {\n        threshold: this.threshold\n      });\n      observer.observe(this.player.media);\n    }\n  }, {\n    key: \"handleIntersection\",\n    value: function handleIntersection(entries) {\n      var entry = entries[0];\n      var isVisible = entry.intersectionRatio >= this.threshold;\n      console.log(entry.intersectionRatio); // el Ratio es ese 0.25 que vamos a estar evaluando, cada que el ratio sea mayor o igual a\n      // 0.25 vamos a intersectar\n\n      isVisible ? this.player.play() : this.player.pause();\n    }\n  }]);\n\n  return AutoPause;\n}();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (AutoPause);\n\n//# sourceURL=webpack:///./assets/plugins/AutoPause.js?");
 
 /***/ }),
 
@@ -119,6 +131,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Med
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\nfunction AutoPlay() {}\n\nAutoPlay.prototype.run = function (player) {\n  if (!player.muted) {\n    // si no esta muted\n    player.muted = true; // entonces lo queremos hacer muted\n  }\n\n  player.play();\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (AutoPlay);\n\n//# sourceURL=webpack:///./assets/plugins/AutoPlay.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/classCallCheck.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _defineProperties(target, props) {\n  for (var i = 0; i < props.length; i++) {\n    var descriptor = props[i];\n    descriptor.enumerable = descriptor.enumerable || false;\n    descriptor.configurable = true;\n    if (\"value\" in descriptor) descriptor.writable = true;\n    Object.defineProperty(target, descriptor.key, descriptor);\n  }\n}\n\nfunction _createClass(Constructor, protoProps, staticProps) {\n  if (protoProps) _defineProperties(Constructor.prototype, protoProps);\n  if (staticProps) _defineProperties(Constructor, staticProps);\n  return Constructor;\n}\n\nmodule.exports = _createClass;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/createClass.js?");
 
 /***/ })
 
